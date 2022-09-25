@@ -1,5 +1,5 @@
-#ifndef __TINY_COMPILE_SRC_INCLUDE_PARSER__
-#define __TINY_COMPILE_SRC_INCLUDE_PARSER__
+#ifndef __TINY_COMPILE_SRC_INCLUDE_PARSER_H__
+#define __TINY_COMPILE_SRC_INCLUDE_PARSER_H__
 
 #include "util.h"
 #include <string>
