@@ -15,6 +15,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}/src
 )
 
+# antlr runtime include dir
 include_directories(
   ${PROJECT_SOURCE_DIR}/third-party/runtime
   ${PROJECT_SOURCE_DIR}/third-party/runtime/atn
@@ -26,6 +27,8 @@ include_directories(
   ${PROJECT_SOURCE_DIR}/third-party/runtime/tree/pattern
   ${PROJECT_SOURCE_DIR}/third-party/runtime/tree/xpath
 )
+
+# antlr source file
 file(GLOB libantlrcpp_SRC
   "${PROJECT_SOURCE_DIR}/third-party/runtime/*.cpp"
   "${PROJECT_SOURCE_DIR}/third-party/runtime/atn/*.cpp"
@@ -38,12 +41,10 @@ file(GLOB libantlrcpp_SRC
   "${PROJECT_SOURCE_DIR}/third-party/runtime/tree/xpath/*.cpp"
 )
 
-set(generated_src
-    ${PROJECT_SOURCE_DIR}/generated/ExprLexer.cpp
-    ${PROJECT_SOURCE_DIR}/generated/ExprBaseListener.cpp
-    ${PROJECT_SOURCE_DIR}/generated/ExprListener.cpp
-    ${PROJECT_SOURCE_DIR}/generated/ExprParser.cpp
-    ${PROJECT_SOURCE_DIR}/src/ShortToUnicodeString.cpp
+# antlr generated src
+file(GLOB generated_src
+    "${PROJECT_SOURCE_DIR}/generated/*.cpp"
+    "${PROJECT_SOURCE_DIR}/src/*.cpp"
 )
 
 add_library(antlr4_shared SHARED ${libantlrcpp_SRC})
