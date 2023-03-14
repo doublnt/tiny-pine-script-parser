@@ -12,26 +12,30 @@ include_directories(
 )
 
 include_directories(
-  ${PROJECT_SOURCE_DIR}/runtime
-  ${PROJECT_SOURCE_DIR}/runtime/atn
-  ${PROJECT_SOURCE_DIR}/runtime/dfa
-  ${PROJECT_SOURCE_DIR}/runtime/internal
-  ${PROJECT_SOURCE_DIR}/runtime/misc
-  ${PROJECT_SOURCE_DIR}/runtime/support
-  ${PROJECT_SOURCE_DIR}/runtime/tree
-  ${PROJECT_SOURCE_DIR}/runtime/tree/pattern
-  ${PROJECT_SOURCE_DIR}/runtime/tree/xpath
+    ${PROJECT_SOURCE_DIR}/src
+)
+
+include_directories(
+  ${PROJECT_SOURCE_DIR}/third-party/runtime
+  ${PROJECT_SOURCE_DIR}/third-party/runtime/atn
+  ${PROJECT_SOURCE_DIR}/third-party/runtime/dfa
+  ${PROJECT_SOURCE_DIR}/third-party/runtime/internal
+  ${PROJECT_SOURCE_DIR}/third-party/runtime/misc
+  ${PROJECT_SOURCE_DIR}/third-party/runtime/support
+  ${PROJECT_SOURCE_DIR}/third-party/runtime/tree
+  ${PROJECT_SOURCE_DIR}/third-party/runtime/tree/pattern
+  ${PROJECT_SOURCE_DIR}/third-party/runtime/tree/xpath
 )
 file(GLOB libantlrcpp_SRC
-  "${PROJECT_SOURCE_DIR}/runtime/*.cpp"
-  "${PROJECT_SOURCE_DIR}/runtime/atn/*.cpp"
-  "${PROJECT_SOURCE_DIR}/runtime/dfa/*.cpp"
-  "${PROJECT_SOURCE_DIR}/runtime/internal/*.cpp"
-  "${PROJECT_SOURCE_DIR}/runtime/misc/*.cpp"
-  "${PROJECT_SOURCE_DIR}/runtime/support/*.cpp"
-  "${PROJECT_SOURCE_DIR}/runtime/tree/*.cpp"
-  "${PROJECT_SOURCE_DIR}/runtime/tree/pattern/*.cpp"
-  "${PROJECT_SOURCE_DIR}/runtime/tree/xpath/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/atn/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/dfa/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/internal/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/misc/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/support/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/tree/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/tree/pattern/*.cpp"
+  "${PROJECT_SOURCE_DIR}/third-party/runtime/tree/xpath/*.cpp"
 )
 
 set(generated_src
@@ -39,6 +43,7 @@ set(generated_src
     ${PROJECT_SOURCE_DIR}/generated/ExprBaseListener.cpp
     ${PROJECT_SOURCE_DIR}/generated/ExprListener.cpp
     ${PROJECT_SOURCE_DIR}/generated/ExprParser.cpp
+    ${PROJECT_SOURCE_DIR}/src/ShortToUnicodeString.cpp
 )
 
 add_library(antlr4_shared SHARED ${libantlrcpp_SRC})

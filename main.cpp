@@ -4,6 +4,7 @@
 #include "antlr4-runtime.h"
 #include "generated/ExprLexer.h"
 #include "generated/ExprParser.h"
+#include "src/ShortToUnicodeString.h"
 
 int main(int argc, const char *argv[])
 {
@@ -14,9 +15,11 @@ int main(int argc, const char *argv[])
     ExprLexer lexer(&inputStream);
     antlr4::CommonTokenStream tokens(&lexer);
     ExprParser parser(&tokens);
-    auto tree = parser.init();
-    
-    std::cout << tree->toStringTree() << std::endl;
+    auto init_context = parser.init();
+    std::cout << init_context->toStringTree() << std::endl;
+
+    antlr4::tree::ParseTreeWalker parse_tree_walker;
+    parse_tree_walker.walk(new ShortToUnicodeString(), init_context);
 
     return 0;
 }

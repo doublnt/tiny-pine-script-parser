@@ -57,7 +57,7 @@ void exprParserInitialize() {
   	0,1,0,1,1,1,1,3,1,18,8,1,1,1,0,0,2,0,2,0,0,19,0,4,1,0,0,0,2,17,1,0,0,
   	0,4,5,5,1,0,0,5,10,3,2,1,0,6,7,5,2,0,0,7,9,3,2,1,0,8,6,1,0,0,0,9,12,1,
   	0,0,0,10,8,1,0,0,0,10,11,1,0,0,0,11,13,1,0,0,0,12,10,1,0,0,0,13,14,5,
-  	3,0,0,14,1,1,0,0,0,15,18,3,0,0,0,16,18,3,0,0,0,17,15,1,0,0,0,17,16,1,
+  	3,0,0,14,1,1,0,0,0,15,18,3,0,0,0,16,18,5,4,0,0,17,15,1,0,0,0,17,16,1,
   	0,0,0,18,3,1,0,0,0,2,10,17
   };
   staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
@@ -191,6 +191,10 @@ ExprParser::InitContext* ExprParser::ValueContext::init() {
   return getRuleContext<ExprParser::InitContext>(0);
 }
 
+tree::TerminalNode* ExprParser::ValueContext::INT() {
+  return getToken(ExprParser::INT, 0);
+}
+
 
 size_t ExprParser::ValueContext::getRuleIndex() const {
   return ExprParser::RuleValue;
@@ -222,23 +226,23 @@ ExprParser::ValueContext* ExprParser::value() {
   try {
     setState(17);
     _errHandler->sync(this);
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 1, _ctx)) {
-    case 1: {
-      enterOuterAlt(_localctx, 1);
-      setState(15);
-      init();
-      break;
-    }
+    switch (_input->LA(1)) {
+      case ExprParser::T__0: {
+        enterOuterAlt(_localctx, 1);
+        setState(15);
+        init();
+        break;
+      }
 
-    case 2: {
-      enterOuterAlt(_localctx, 2);
-      setState(16);
-      init();
-      break;
-    }
+      case ExprParser::INT: {
+        enterOuterAlt(_localctx, 2);
+        setState(16);
+        match(ExprParser::INT);
+        break;
+      }
 
     default:
-      break;
+      throw NoViableAltException(this);
     }
    
   }
