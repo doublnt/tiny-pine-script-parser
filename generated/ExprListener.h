@@ -1,5 +1,5 @@
 
-// Generated from .\Expr.g4 by ANTLR 4.11.1
+// Generated from .\generated\Expr.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -14,11 +14,11 @@
 class  ExprListener : public antlr4::tree::ParseTreeListener {
 public:
 
-  virtual void enterProg(ExprParser::ProgContext *ctx) = 0;
-  virtual void exitProg(ExprParser::ProgContext *ctx) = 0;
+  virtual void enterInit(ExprParser::InitContext *ctx) = 0;
+  virtual void exitInit(ExprParser::InitContext *ctx) = 0;
 
-  virtual void enterExpr(ExprParser::ExprContext *ctx) = 0;
-  virtual void exitExpr(ExprParser::ExprContext *ctx) = 0;
+  virtual void enterValue(ExprParser::ValueContext *ctx) = 0;
+  virtual void exitValue(ExprParser::ValueContext *ctx) = 0;
 
 
 };

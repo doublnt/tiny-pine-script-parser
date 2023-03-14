@@ -1,5 +1,5 @@
 
-// Generated from .\Expr.g4 by ANTLR 4.11.1
+// Generated from .\generated\Expr.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -16,11 +16,11 @@
 class  ExprBaseListener : public ExprListener {
 public:
 
-  virtual void enterProg(ExprParser::ProgContext * /*ctx*/) override { }
-  virtual void exitProg(ExprParser::ProgContext * /*ctx*/) override { }
+  virtual void enterInit(ExprParser::InitContext * /*ctx*/) override { }
+  virtual void exitInit(ExprParser::InitContext * /*ctx*/) override { }
 
-  virtual void enterExpr(ExprParser::ExprContext * /*ctx*/) override { }
-  virtual void exitExpr(ExprParser::ExprContext * /*ctx*/) override { }
+  virtual void enterValue(ExprParser::ValueContext * /*ctx*/) override { }
+  virtual void exitValue(ExprParser::ValueContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
