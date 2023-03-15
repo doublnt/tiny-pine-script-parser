@@ -1,5 +1,5 @@
 
-// Generated from .\generated\Expr.g4 by ANTLR 4.12.0
+// Generated from ./generated/Expr.g4 by ANTLR 4.12.0
 
 #pragma once
 

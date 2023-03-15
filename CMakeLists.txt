@@ -43,7 +43,7 @@ file(GLOB libantlrcpp_SRC
 
 # antlr generated src
 file(GLOB generated_src
-    "${PROJECT_SOURCE_DIR}/generated/*.cpp"
+    "${PROJECT_SOURCE_DIR}/generated/**/*.cpp"
     "${PROJECT_SOURCE_DIR}/src/*.cpp"
 )
 
