@@ -10,6 +10,9 @@
 #include "generated/Expr2/Expr2Lexer.h"
 #include "generated/Expr2/Expr2Parser.h"
 
+#include "generated/CommonLexer/LibExprLexer.h"
+#include "generated/CommonLexer/LibExprParser.h"
+
 void exprParserTree()
 {
     std::string input_str;
@@ -38,9 +41,22 @@ void expr2ParserTree()
     std::cout << tree->toStringTree(&parser) << std::endl;
 }
 
+void libExprParserTree()
+{
+    antlr4::ANTLRInputStream input_stream{std::cin};
+    LibExprLexer lexer{&input_stream};
+    antlr4::CommonTokenStream token{&lexer};
+    LibExprParser parser{&token};
+
+    auto tree{parser.prog()};
+
+    std::cout << tree->toStringTree(&parser) << std::endl;
+}
+
 int main(int argc, const char *argv[])
 {
-    expr2ParserTree();
+    // expr2ParserTree();
+    libExprParserTree();
 
     return 0;
 }
