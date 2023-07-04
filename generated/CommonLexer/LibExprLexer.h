@@ -1,5 +1,5 @@
 
-// Generated from generated/CommonLexer/LibExpr.g4 by ANTLR 4.12.0
+// Generated from .\LibExpr.g4 by ANTLR 4.13.0
 
 #pragma once
 
@@ -12,8 +12,8 @@
 class  LibExprLexer : public antlr4::Lexer {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    ID = 8, INT = 9, NEWLINE = 10, WS = 11
+    T__0 = 1, T__1 = 2, T__2 = 3, MUL = 4, DIV = 5, ADD = 6, SUB = 7, ID = 8, 
+    INT = 9, NEWLINE = 10, WS = 11
   };
 
   explicit LibExprLexer(antlr4::CharStream *input);

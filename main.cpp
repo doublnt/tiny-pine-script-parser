@@ -58,7 +58,7 @@ int main(int argc, const char *argv[])
 {
     // exprParserTree();
     // expr2ParserTree();
-    // libExprParserTree();
+    libExprParserTree();
 
     return 0;
 }

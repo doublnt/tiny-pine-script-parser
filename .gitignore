@@ -34,4 +34,4 @@
 # Folder
 /build
 /.vscode
-/.antlr
+.antlr

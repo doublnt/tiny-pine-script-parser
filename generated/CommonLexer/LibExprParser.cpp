@@ -1,8 +1,8 @@
 
-// Generated from generated/CommonLexer/LibExpr.g4 by ANTLR 4.12.0
+// Generated from .\LibExpr.g4 by ANTLR 4.13.0
 
 
-#include "LibExprListener.h"
+#include "LibExprVisitor.h"
 
 #include "LibExprParser.h"
 
@@ -37,31 +37,41 @@ struct LibExprParserStaticData final {
 };
 
 ::antlr4::internal::OnceFlag libexprParserOnceFlag;
+#if ANTLR4_USE_THREAD_LOCAL_CACHE
+static thread_local
+#endif
 LibExprParserStaticData *libexprParserStaticData = nullptr;
 
 void libexprParserInitialize() {
+#if ANTLR4_USE_THREAD_LOCAL_CACHE
+  if (libexprParserStaticData != nullptr) {
+    return;
+  }
+#else
   assert(libexprParserStaticData == nullptr);
+#endif
   auto staticData = std::make_unique<LibExprParserStaticData>(
     std::vector<std::string>{
       "prog", "stat", "expr"
     },
     std::vector<std::string>{
-      "", "'='", "'*'", "'/'", "'+'", "'-'", "'('", "')'"
+      "", "'='", "'('", "')'", "'*'", "'/'", "'+'", "'-'"
     },
     std::vector<std::string>{
-      "", "", "", "", "", "", "", "", "ID", "INT", "NEWLINE", "WS"
+      "", "", "", "", "MUL", "DIV", "ADD", "SUB", "ID", "INT", "NEWLINE", 
+      "WS"
     }
   );
   static const int32_t serializedATNSegment[] = {
   	4,1,11,43,2,0,7,0,2,1,7,1,2,2,7,2,1,0,4,0,8,8,0,11,0,12,0,9,1,1,1,1,1,
   	1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,21,8,1,1,2,1,2,1,2,1,2,1,2,1,2,1,2,3,2,
   	30,8,2,1,2,1,2,1,2,1,2,1,2,1,2,5,2,38,8,2,10,2,12,2,41,9,2,1,2,0,1,4,
-  	3,0,2,4,0,2,1,0,2,3,1,0,4,5,46,0,7,1,0,0,0,2,20,1,0,0,0,4,29,1,0,0,0,
+  	3,0,2,4,0,2,1,0,4,5,1,0,6,7,46,0,7,1,0,0,0,2,20,1,0,0,0,4,29,1,0,0,0,
   	6,8,3,2,1,0,7,6,1,0,0,0,8,9,1,0,0,0,9,7,1,0,0,0,9,10,1,0,0,0,10,1,1,0,
   	0,0,11,12,3,4,2,0,12,13,5,10,0,0,13,21,1,0,0,0,14,15,5,8,0,0,15,16,5,
   	1,0,0,16,17,3,4,2,0,17,18,5,10,0,0,18,21,1,0,0,0,19,21,5,10,0,0,20,11,
   	1,0,0,0,20,14,1,0,0,0,20,19,1,0,0,0,21,3,1,0,0,0,22,23,6,2,-1,0,23,30,
-  	5,9,0,0,24,30,5,8,0,0,25,26,5,6,0,0,26,27,3,4,2,0,27,28,5,7,0,0,28,30,
+  	5,9,0,0,24,30,5,8,0,0,25,26,5,2,0,0,26,27,3,4,2,0,27,28,5,3,0,0,28,30,
   	1,0,0,0,29,22,1,0,0,0,29,24,1,0,0,0,29,25,1,0,0,0,30,39,1,0,0,0,31,32,
   	10,5,0,0,32,33,7,0,0,0,33,38,3,4,2,6,34,35,10,4,0,0,35,36,7,1,0,0,36,
   	38,3,4,2,5,37,31,1,0,0,0,37,34,1,0,0,0,38,41,1,0,0,0,39,37,1,0,0,0,39,
@@ -133,16 +143,12 @@ size_t LibExprParser::ProgContext::getRuleIndex() const {
   return LibExprParser::RuleProg;
 }
 
-void LibExprParser::ProgContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<LibExprListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->enterProg(this);
-}
 
-void LibExprParser::ProgContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<LibExprListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->exitProg(this);
+std::any LibExprParser::ProgContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LibExprVisitor*>(visitor))
+    return parserVisitor->visitProg(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 LibExprParser::ProgContext* LibExprParser::prog() {
@@ -169,7 +175,7 @@ LibExprParser::ProgContext* LibExprParser::prog() {
       _errHandler->sync(this);
       _la = _input->LA(1);
     } while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & 1856) != 0));
+      ((1ULL << _la) & 1796) != 0));
    
   }
   catch (RecognitionException &e) {
@@ -204,16 +210,12 @@ size_t LibExprParser::StatContext::getRuleIndex() const {
   return LibExprParser::RuleStat;
 }
 
-void LibExprParser::StatContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<LibExprListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->enterStat(this);
-}
 
-void LibExprParser::StatContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<LibExprListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->exitStat(this);
+std::any LibExprParser::StatContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LibExprVisitor*>(visitor))
+    return parserVisitor->visitStat(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 LibExprParser::StatContext* LibExprParser::stat() {
@@ -296,21 +298,33 @@ LibExprParser::ExprContext* LibExprParser::ExprContext::expr(size_t i) {
   return getRuleContext<LibExprParser::ExprContext>(i);
 }
 
+tree::TerminalNode* LibExprParser::ExprContext::MUL() {
+  return getToken(LibExprParser::MUL, 0);
+}
+
+tree::TerminalNode* LibExprParser::ExprContext::DIV() {
+  return getToken(LibExprParser::DIV, 0);
+}
+
+tree::TerminalNode* LibExprParser::ExprContext::ADD() {
+  return getToken(LibExprParser::ADD, 0);
+}
+
+tree::TerminalNode* LibExprParser::ExprContext::SUB() {
+  return getToken(LibExprParser::SUB, 0);
+}
+
 
 size_t LibExprParser::ExprContext::getRuleIndex() const {
   return LibExprParser::RuleExpr;
 }
 
-void LibExprParser::ExprContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<LibExprListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->enterExpr(this);
-}
 
-void LibExprParser::ExprContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<LibExprListener *>(listener);
-  if (parserListener != nullptr)
-    parserListener->exitExpr(this);
+std::any LibExprParser::ExprContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<LibExprVisitor*>(visitor))
+    return parserVisitor->visitExpr(this);
+  else
+    return visitor->visitChildren(this);
 }
 
 
@@ -354,13 +368,13 @@ LibExprParser::ExprContext* LibExprParser::expr(int precedence) {
         break;
       }
 
-      case LibExprParser::T__5: {
+      case LibExprParser::T__1: {
         setState(25);
-        match(LibExprParser::T__5);
+        match(LibExprParser::T__1);
         setState(26);
         expr(0);
         setState(27);
-        match(LibExprParser::T__6);
+        match(LibExprParser::T__2);
         break;
       }
 
@@ -386,11 +400,12 @@ LibExprParser::ExprContext* LibExprParser::expr(int precedence) {
 
           if (!(precpred(_ctx, 5))) throw FailedPredicateException(this, "precpred(_ctx, 5)");
           setState(32);
+          antlrcpp::downCast<ExprContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
-          if (!(_la == LibExprParser::T__1
+          if (!(_la == LibExprParser::MUL
 
-          || _la == LibExprParser::T__2)) {
-          _errHandler->recoverInline(this);
+          || _la == LibExprParser::DIV)) {
+            antlrcpp::downCast<ExprContext *>(_localctx)->op = _errHandler->recoverInline(this);
           }
           else {
             _errHandler->reportMatch(this);
@@ -408,11 +423,12 @@ LibExprParser::ExprContext* LibExprParser::expr(int precedence) {
 
           if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
           setState(35);
+          antlrcpp::downCast<ExprContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
-          if (!(_la == LibExprParser::T__3
+          if (!(_la == LibExprParser::ADD
 
-          || _la == LibExprParser::T__4)) {
-          _errHandler->recoverInline(this);
+          || _la == LibExprParser::SUB)) {
+            antlrcpp::downCast<ExprContext *>(_localctx)->op = _errHandler->recoverInline(this);
           }
           else {
             _errHandler->reportMatch(this);
@@ -462,5 +478,9 @@ bool LibExprParser::exprSempred(ExprContext *_localctx, size_t predicateIndex) {
 }
 
 void LibExprParser::initialize() {
+#if ANTLR4_USE_THREAD_LOCAL_CACHE
+  libexprParserInitialize();
+#else
   ::antlr4::internal::call_once(libexprParserOnceFlag, libexprParserInitialize);
+#endif
 }

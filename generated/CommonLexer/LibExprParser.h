@@ -1,5 +1,5 @@
 
-// Generated from generated/CommonLexer/LibExpr.g4 by ANTLR 4.12.0
+// Generated from .\LibExpr.g4 by ANTLR 4.13.0
 
 #pragma once
 
@@ -12,8 +12,8 @@
 class  LibExprParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    ID = 8, INT = 9, NEWLINE = 10, WS = 11
+    T__0 = 1, T__1 = 2, T__2 = 3, MUL = 4, DIV = 5, ADD = 6, SUB = 7, ID = 8, 
+    INT = 9, NEWLINE = 10, WS = 11
   };
 
   enum {
@@ -48,8 +48,8 @@ public:
     std::vector<StatContext *> stat();
     StatContext* stat(size_t i);
 
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
   };
 
@@ -63,8 +63,8 @@ public:
     antlr4::tree::TerminalNode *NEWLINE();
     antlr4::tree::TerminalNode *ID();
 
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
   };
 
@@ -72,15 +72,20 @@ public:
 
   class  ExprContext : public antlr4::ParserRuleContext {
   public:
+    antlr4::Token *op = nullptr;
     ExprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *INT();
     antlr4::tree::TerminalNode *ID();
     std::vector<ExprContext *> expr();
     ExprContext* expr(size_t i);
+    antlr4::tree::TerminalNode *MUL();
+    antlr4::tree::TerminalNode *DIV();
+    antlr4::tree::TerminalNode *ADD();
+    antlr4::tree::TerminalNode *SUB();
 
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
    
   };
 
