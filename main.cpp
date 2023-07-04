@@ -3,9 +3,10 @@
 
 #include "antlr4-runtime.h"
 
+#include "src/ShortToUnicodeString.h"
+
 #include "generated/Expr/ExprLexer.h"
 #include "generated/Expr/ExprParser.h"
-#include "src/ShortToUnicodeString.h"
 
 #include "generated/Expr2/Expr2Lexer.h"
 #include "generated/Expr2/Expr2Parser.h"
@@ -55,8 +56,9 @@ void libExprParserTree()
 
 int main(int argc, const char *argv[])
 {
+    // exprParserTree();
     // expr2ParserTree();
-    libExprParserTree();
+    // libExprParserTree();
 
     return 0;
 }
