@@ -12,8 +12,8 @@
 class  LibExprParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, MUL = 4, DIV = 5, ADD = 6, SUB = 7, ID = 8, 
-    INT = 9, NEWLINE = 10, WS = 11
+    T__0 = 1, T__1 = 2, ID = 3, INT = 4, NEWLINE = 5, WS = 6, MUL = 7, DIV = 8, 
+    ADD = 9, SUB = 10, LEFT_BRACKET = 11, RIGHT_BRACKET = 12
   };
 
   enum {
@@ -58,35 +58,114 @@ public:
   class  StatContext : public antlr4::ParserRuleContext {
   public:
     StatContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    ExprContext *expr();
-    antlr4::tree::TerminalNode *NEWLINE();
-    antlr4::tree::TerminalNode *ID();
+   
+    StatContext() = default;
+    void copyFrom(StatContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
 
+    virtual size_t getRuleIndex() const override;
+
+   
+  };
+
+  class  BlankContext : public StatContext {
+  public:
+    BlankContext(StatContext *ctx);
+
+    antlr4::tree::TerminalNode *NEWLINE();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
+  };
+
+  class  PrintExprContext : public StatContext {
+  public:
+    PrintExprContext(StatContext *ctx);
+
+    ExprContext *expr();
+    antlr4::tree::TerminalNode *NEWLINE();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  AssignContext : public StatContext {
+  public:
+    AssignContext(StatContext *ctx);
+
+    antlr4::tree::TerminalNode *ID();
+    ExprContext *expr();
+    antlr4::tree::TerminalNode *NEWLINE();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   StatContext* stat();
 
   class  ExprContext : public antlr4::ParserRuleContext {
   public:
-    antlr4::Token *op = nullptr;
     ExprContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+   
+    ExprContext() = default;
+    void copyFrom(ExprContext *context);
+    using antlr4::ParserRuleContext::copyFrom;
+
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *INT();
-    antlr4::tree::TerminalNode *ID();
+
+   
+  };
+
+  class  ParensContext : public ExprContext {
+  public:
+    ParensContext(ExprContext *ctx);
+
+    antlr4::tree::TerminalNode *LEFT_BRACKET();
+    ExprContext *expr();
+    antlr4::tree::TerminalNode *RIGHT_BRACKET();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  MulDivContext : public ExprContext {
+  public:
+    MulDivContext(ExprContext *ctx);
+
+    antlr4::Token *op = nullptr;
     std::vector<ExprContext *> expr();
     ExprContext* expr(size_t i);
     antlr4::tree::TerminalNode *MUL();
     antlr4::tree::TerminalNode *DIV();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  AddSubContext : public ExprContext {
+  public:
+    AddSubContext(ExprContext *ctx);
+
+    antlr4::Token *op = nullptr;
+    std::vector<ExprContext *> expr();
+    ExprContext* expr(size_t i);
     antlr4::tree::TerminalNode *ADD();
     antlr4::tree::TerminalNode *SUB();
 
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  IdContext : public ExprContext {
+  public:
+    IdContext(ExprContext *ctx);
+
+    antlr4::tree::TerminalNode *ID();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
+  };
+
+  class  IntContext : public ExprContext {
+  public:
+    IntContext(ExprContext *ctx);
+
+    antlr4::tree::TerminalNode *INT();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
   ExprContext* expr();

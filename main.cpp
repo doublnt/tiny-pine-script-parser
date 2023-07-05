@@ -4,6 +4,7 @@
 #include "antlr4-runtime.h"
 
 #include "src/ShortToUnicodeString.h"
+#include "src/EvalVisitor.h"
 
 #include "generated/Expr/ExprLexer.h"
 #include "generated/Expr/ExprParser.h"
@@ -44,7 +45,7 @@ void expr2ParserTree()
 
 void libExprParserTree()
 {
-    antlr4::ANTLRInputStream input_stream{std::cin};
+    antlr4::ANTLRInputStream input_stream{u8"a=1;\nb=2;\na-(b-2);\n"};
     LibExprLexer lexer{&input_stream};
     antlr4::CommonTokenStream token{&lexer};
     LibExprParser parser{&token};
@@ -52,6 +53,10 @@ void libExprParserTree()
     auto tree{parser.prog()};
 
     std::cout << tree->toStringTree(&parser) << std::endl;
+
+    auto eval_visitor_ptr{std::make_shared<EvalVisitor>()};
+
+    eval_visitor_ptr->visit(tree);
 }
 
 int main(int argc, const char *argv[])

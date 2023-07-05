@@ -12,8 +12,8 @@
 class  LibExprLexer : public antlr4::Lexer {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, MUL = 4, DIV = 5, ADD = 6, SUB = 7, ID = 8, 
-    INT = 9, NEWLINE = 10, WS = 11
+    T__0 = 1, T__1 = 2, ID = 3, INT = 4, NEWLINE = 5, WS = 6, MUL = 7, DIV = 8, 
+    ADD = 9, SUB = 10, LEFT_BRACKET = 11, RIGHT_BRACKET = 12
   };
 
   explicit LibExprLexer(antlr4::CharStream *input);
