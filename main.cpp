@@ -45,7 +45,7 @@ void expr2ParserTree()
 
 void libExprParserTree()
 {
-    antlr4::ANTLRInputStream input_stream{u8"a=1;\nb=2;\na-(b-2);\n"};
+    antlr4::ANTLRInputStream input_stream{u8"a=1;\nb=2;\na*(b-2);\n"};
     LibExprLexer lexer{&input_stream};
     antlr4::CommonTokenStream token{&lexer};
     LibExprParser parser{&token};
